@@ -1,6 +1,6 @@
 # burrows-wheeler
 
-Implementation of Burrows-Wheeler Trasnform
+Implementation of Burrows-Wheeler Transform
 
 
 ## Build & Run
