@@ -2,6 +2,8 @@
 
 #include <chrono>
 
+namespace utils {
+
 double gettime() {
   using clock = std::chrono::steady_clock;
   using dns = std::chrono::duration<double, std::nano>;
@@ -10,3 +12,5 @@ double gettime() {
   tpns curtime = clock::now();
   return (double)((curtime - basetime).count()) / 1e9;
 }
+
+} // namespace utils

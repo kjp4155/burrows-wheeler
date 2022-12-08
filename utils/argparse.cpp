@@ -2,6 +2,8 @@
 
 #include <algorithm>
 
+namespace utils {
+
 Argparser::Argparser(int &argc, char **argv) {
   for (int i = 1; i < argc; ++i)
     this->tokens.push_back(std::string(argv[i]));
@@ -38,3 +40,5 @@ bool Argparser::cmd_option_exists(const std::string &option) const {
   return std::find(this->tokens.begin(), this->tokens.end(), option) !=
          this->tokens.end();
 }
+
+} // namespace utils

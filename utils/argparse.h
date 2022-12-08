@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+namespace utils {
+
 // Simple Argparser based on https://stackoverflow.com/a/868894
 class Argparser {
 public:
@@ -18,3 +20,5 @@ public:
 private:
   std::vector<std::string> tokens;
 };
+
+} // namespace utils

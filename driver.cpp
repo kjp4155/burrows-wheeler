@@ -1,9 +1,13 @@
 #include <string>
+#include <vector>
 
+#include "engines/engines.h"
 #include "spdlog/spdlog.h"
 #include "utils/utils.h"
 
+using std::pair;
 using std::string;
+using std::vector;
 
 /*
  * Program options
@@ -25,7 +29,7 @@ void print_usage_exit() {
 }
 
 void parse_args(int argc, char **argv) {
-  Argparser argparser(argc, argv);
+  utils::Argparser argparser(argc, argv);
 
   input_fname = argparser.get_string_option("-i");
   if (input_fname.size() == 0) {
@@ -51,8 +55,35 @@ void parse_args(int argc, char **argv) {
 
 int main(int argc, char **argv) {
 
-  /*
-   * Parse arguments
-   */
   parse_args(argc, argv);
+
+  engines::BurrowsWheelerTransform bwt_engine;
+  engines::MoveToFrontCoding mtf_engine;
+  engines::HuffmanCoding huffman_engine;
+
+  if (run_compression) {
+    vector<char> input_content = utils::read_textfile(input_fname);
+    bwt_result_t bwt_result = bwt_engine.transform(input_content);
+    mtf_code_t mtf_result = mtf_engine.encode(bwt_result);
+    huffman_code_t huffman_result = huffman_engine.encode(mtf_result);
+    vector<char> compressed_content =
+        engines::HuffmanCoding::pack_result(huffman_result);
+    utils::dump_textfile(output_fname, compressed_content);
+
+    spdlog::info("Compression done!");
+    double compression_ratio =
+        (double)input_content.size() / compressed_content.size();
+    spdlog::info("Compression ratio: {}", compression_ratio);
+  }
+
+  if (run_decompression) {
+    vector<char> compressed_content = utils::read_textfile(input_fname);
+    huffman_code_t huffman_result =
+        engines::HuffmanCoding::unpack_result(compressed_content);
+    mtf_code_t mtf_result = huffman_engine.decode(huffman_result);
+    bwt_result_t bwt_result = mtf_engine.decode(mtf_result);
+    vector<char> original_content = bwt_engine.inverse_transform(bwt_result);
+    utils::dump_textfile(output_fname, original_content);
+    spdlog::info("Decompression done!");
+  }
 }
