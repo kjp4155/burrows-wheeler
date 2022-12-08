@@ -24,6 +24,6 @@ if(NOT TARGET spdlog)
 endif()
 
 file(GLOB CPP_SOURCES "*.cpp")
-add_executable(main ${CPP_SOURCES})
+add_executable(driver ${CPP_SOURCES})
 
-target_link_libraries(main PRIVATE spdlog::spdlog utils engines)
+target_link_libraries(driver PRIVATE spdlog::spdlog utils engines)

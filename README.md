@@ -5,11 +5,31 @@ Implementation of Burrows-Wheeler Trasnform
 
 ## Build & Run
 
+### Clone this repository
+
+```
+$ git clone --recurse-submodules https://github.com/kjp4155/burrows-wheeler
+$ cd burrows-wheeler
+```
+
+### Make build directory, then build
 ```
 $ mkdir build && cd build
 $ cmake .. && make -j
-$ ./driver
 ```
+
+### Run 
+
+Compression
+```
+$ ./driver -c -i A.txt -o A.compressed
+```
+
+Decompression
+```
+$ ./driver -d -i A.compressed -o A.txt
+```
+
 
 ## Directory Structure
 
@@ -28,6 +48,7 @@ $ ./driver
 - `spdlog`: [A logging library](https://github.com/gabime/spdlog).
 
 - `driver.cpp`: Driver program (where `main()` is in).
+
 
 ## Dataset
 
