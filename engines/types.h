@@ -6,8 +6,10 @@
 
 #define NUM_CHAR 256
 
+typedef unsigned char char_t;
+
 // Pair of (Transformed string, hint index)
-typedef std::pair<std::vector<char>, size_t> bwt_result_t;
+typedef std::pair<std::vector<char_t>, size_t> bwt_result_t;
 
 // List of codes
 typedef std::vector<int> mtf_code_t;

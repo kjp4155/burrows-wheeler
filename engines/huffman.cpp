@@ -12,16 +12,16 @@ mtf_code_t engines::HuffmanCoding::decode(huffman_code_t huffman_result) {
   return mtf_code_t();
 }
 
-std::vector<char>
-engines::HuffmanCoding::pack_result(huffman_code_t huffman_result) {
+std::vector<char_t>
+engines::HuffmanCoding::pack_result(std::pair<huffman_code_t, size_t> input) {
   // TODO: Think & implement how to pack encoded string with code table
   // into a string
-  return std::vector<char>();
+  return std::vector<char_t>();
 }
 
-huffman_code_t
-engines::HuffmanCoding::unpack_result(std::vector<char> raw_content) {
+std::pair<huffman_code_t, size_t>
+engines::HuffmanCoding::unpack_result(std::vector<char_t> raw_content) {
   // TODO: Think & implement how to pack encoded string with code table
   // into a string
-  return huffman_code_t();
+  return std::make_pair(huffman_code_t(), 0);
 }

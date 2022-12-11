@@ -5,13 +5,13 @@ set(CMAKE_CXX_COMPILER "g++")
 
 project(BWT LANGUAGES CXX VERSION 0.1)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
-add_compile_options(-O3 -std=c++14 -g -Wall -Wno-unused-result)
+add_compile_options(-O3 -std=c++17 -g -Wall -Wno-unused-result)
 
 include_directories(".")
 

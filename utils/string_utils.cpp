@@ -5,18 +5,18 @@
 
 namespace utils {
 
-std::vector<char> read_textfile(std::string fname) {
-  std::vector<char> s;
-  char c;
-  std::ifstream fs = std::ifstream(fname, std::ios_base::in);
+std::vector<unsigned char> read_textfile(std::string fname) {
+  std::vector<unsigned char> s;
+  unsigned char c;
+  std::basic_ifstream<unsigned char> fs(fname, std::ios_base::in | std::ios_base::binary);
   while (fs.get(c))
     s.push_back(c);
   return s;
 }
 
-void dump_textfile(std::string fname, std::vector<char> content) {
-  std::ofstream fs = std::ofstream(fname, std::ios_base::out);
-  for (char c : content) {
+void dump_textfile(std::string fname, std::vector<unsigned char> content) {
+  std::basic_ofstream<unsigned char> fs(fname, std::ios_base::out);
+  for (unsigned char c : content) {
     fs << c;
   }
 }
