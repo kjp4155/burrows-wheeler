@@ -14,6 +14,8 @@ public:
   static std::pair<huffman_code_t, size_t> unpack_result(std::vector<char_t> raw_content);
 
 private:
+  std::vector<int> make_code_lengths(const std::vector<int> &weights);
+  std::vector<unsigned int> assign_codes(const std::vector<int> &code_lengths);
 };
 
 } // namespace engines
