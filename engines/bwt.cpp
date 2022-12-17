@@ -4,7 +4,7 @@ class SuffixArray {
 public:
   vector<int> compute(const vector<char_t> s) {
     int size = s.size();
-    vector<int> rank(size + 1), _rank(size + 1);
+    vector<int> rank(size), _rank(size);
     vector<int> sa(size);
     for (int i = 0; i < size; i++) {
       rank[i] = s[i];
@@ -13,29 +13,29 @@ public:
 
     for(int k = 1; k < size; k <<= 1) {
       auto cmp = [&](int a, int b) {
-        return rank[a] == rank[b] ? rank[a+k] < rank[b+k] : rank[a] < rank[b];
+        return rank[a] == rank[b] ? rank[(a + k) % size] < rank[(b + k) % size] : rank[a] < rank[b];
       };
 
       int c = std::max(size, NUM_CHAR);
       vector<int> cnt(c + 1), idx(size);
 
       fill(cnt.begin(), cnt.end(), 0);
-      for (int i = 0; i < size; i++) cnt[rank[std::min(i + k, size)]]++;
+      for (int i = 0; i < size; i++) cnt[rank[(i + k) % size]]++;
       for (int i = 1; i <= c; i++) cnt[i] += cnt[i-1];
-      for (int i = size - 1; i >= 0; i--) idx[--cnt[rank[std::min(i + k, size)]]] = i;
+      for (int i = size - 1; i >= 0; i--) idx[--cnt[rank[(i + k) % size]]] = i;
 
       fill(cnt.begin(), cnt.end(), 0);
       for (int i = 0; i < size; i++) cnt[rank[i]]++;
       for (int i = 1; i <= c; i++) cnt[i] += cnt[i-1];
       for (int i = size - 1; i >= 0; i--) sa[--cnt[rank[idx[i]]]] = idx[i];
 
-      int r = _rank[sa[0]] = 1;
+      int r = _rank[sa[0]] = 0;
       for (int i = 1; i < size; i++) {
         r += cmp(sa[i-1], sa[i]);
         _rank[sa[i]] = r;
       }
       rank.swap(_rank);
-      if (r == size) break;
+      if (r == size-1) break;
     }
     return sa;
   }
