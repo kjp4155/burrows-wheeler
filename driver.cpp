@@ -66,8 +66,8 @@ int main(int argc, char **argv) {
     bwt_result_t bwt_result = bwt_engine.transform(input_content);
     mtf_code_t mtf_result = mtf_engine.encode(bwt_result.first);
     huffman_code_t huffman_result = huffman_engine.encode(mtf_result);
-    vector<char_t> compressed_content =
-        engines::HuffmanCoding::pack_result(make_pair(huffman_result, bwt_result.second));
+    vector<char_t> compressed_content = engines::HuffmanCoding::pack_result(
+        make_pair(huffman_result, bwt_result.second));
     utils::dump_textfile(output_fname, compressed_content);
 
     spdlog::info("Compression done!");
@@ -82,7 +82,8 @@ int main(int argc, char **argv) {
         engines::HuffmanCoding::unpack_result(compressed_content);
     mtf_code_t mtf_result = huffman_engine.decode(huffman_result.first);
     vector<char_t> bwt_result = mtf_engine.decode(mtf_result);
-    vector<char_t> original_content = bwt_engine.inverse_transform(make_pair(bwt_result, huffman_result.second));
+    vector<char_t> original_content = bwt_engine.inverse_transform(
+        make_pair(bwt_result, huffman_result.second));
     utils::dump_textfile(output_fname, original_content);
     spdlog::info("Decompression done!");
   }

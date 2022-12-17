@@ -1,14 +1,13 @@
-#include <list>
+#include "movetofront.h"
 #include <algorithm>
 #include <iterator>
-#include "movetofront.h"
+#include <list>
 
 using std::list;
 
-list<char_t>
-unique_characters() {
+list<char_t> unique_characters() {
   list<char_t> res;
-  for(unsigned int c = 0; c < NUM_CHAR; c++) {
+  for (unsigned int c = 0; c < NUM_CHAR; c++) {
     res.push_back((char_t)c);
   }
   return res;
@@ -16,8 +15,7 @@ unique_characters() {
 
 engines::MoveToFrontCoding::MoveToFrontCoding() {}
 
-mtf_code_t
-engines::MoveToFrontCoding::encode(std::vector<char_t> s) {
+mtf_code_t engines::MoveToFrontCoding::encode(std::vector<char_t> s) {
   list<char_t> char_list = unique_characters();
   vector<int> res;
   for (char_t c : s) {
@@ -29,8 +27,7 @@ engines::MoveToFrontCoding::encode(std::vector<char_t> s) {
   return res;
 }
 
-vector<char_t>
-engines::MoveToFrontCoding::decode(mtf_code_t mtf_result) {
+vector<char_t> engines::MoveToFrontCoding::decode(mtf_code_t mtf_result) {
   list<char_t> char_list = unique_characters();
   vector<char_t> res;
   res.reserve(mtf_result.size());
