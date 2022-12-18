@@ -1,6 +1,7 @@
 #include "bwt.h"
 
-class SuffixArray {
+// Slightly modified Manber-Myers' suffix array algorithm to sort rotations.
+class RotationArray {
 public:
   vector<int> compute(const vector<char_t> s) {
     int size = s.size();
@@ -47,8 +48,8 @@ BurrowsWheelerTransform::BurrowsWheelerTransform() {}
 
 bwt_result_t
 BurrowsWheelerTransform::transform(vector<char_t> s) {
-  SuffixArray suffixArray;
-  auto sa = suffixArray.compute(s);
+  RotationArray rotationArray;
+  auto sa = rotationArray.compute(s);
   int size = s.size();
 
   vector<char_t> res(size);
