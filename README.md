@@ -22,12 +22,12 @@ $ cmake .. && make -j
 
 Compression
 ```
-$ ./driver -c -i A.txt -o A.compressed
+$ ./driver -c -i ../data/1.in -o 1.compressed
 ```
 
 Decompression
 ```
-$ ./driver -d -i A.compressed -o A.txt
+$ ./driver -d -i 1.compressed -o 1.out
 ```
 
 
@@ -54,8 +54,8 @@ $ ./driver -d -i A.compressed -o A.txt
 
 | **File Name** | **Description**     | **Size** | **Compressed Size** | **Ratio** |
 |---------------|---------------------|----------|---------------------|-----------|
-| 1.in          | Lorem Ipsum         | 28 KB    |                     |           |
-| 2.in          | Dense File          | 1015 KB  |                     |           |
-| 3.in          | Sparse File         | 1015 KB  |                     |           |
-| 4.in          | Pride and Prejudice | 701 KB   |                     |           |
-| 5.in          | Moby-Dick           | 1227 KB  |                     |           |
+| 1.in          | Lorem Ipsum         | 28 KB    |        7.8 KB       |    3.49   |
+| 2.in          | Dense File          | 1015 KB  |        276 KB       |    3.67   |
+| 3.in          | Sparse File         | 1015 KB  |        785 KB       |    1.29   |
+| 4.in          | Pride and Prejudice | 701 KB   |        215 KB       |    3.26   |
+| 5.in          | Moby-Dick           | 1227 KB  |        419 KB       |    2.93   |
